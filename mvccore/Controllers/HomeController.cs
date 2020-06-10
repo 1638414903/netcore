@@ -20,7 +20,10 @@ namespace mvccore.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new ErrorViewModel();
+            model.RequestId = "999";
+            ViewBag.aa = "张三";
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -37,5 +40,30 @@ namespace mvccore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public string Login([FromRoute]Users model)
+        {
+            if (string.IsNullOrWhiteSpace(model.UserName) || string.IsNullOrWhiteSpace(model.PassWord))
+
+            {
+                return "账号或密码不能为空";
+            }
+            if (model.UserName == "1" && model.PassWord == "1")
+            {
+                return "成功";
+            }
+            else
+            {
+                return "账号或密码错误";
+            }
+        }
+
+        public class Users
+        {
+            public string UserName { get; set; }
+            public string PassWord { get; set; }
+        }
+
     }
 }

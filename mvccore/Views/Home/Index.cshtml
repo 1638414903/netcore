@@ -1,8 +1,38 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var ss = Model;
 }
 
+<script src="~/js/jquery-1.7.1.min.js"></script>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core"> @ss.RequestId</a>.</p>
+    <p>@ViewBag.aa</p>
+    <label>用户名</label> <input type="text" name="name" id="username" value="" />
+    <label>密码</label> <input type="password" name="name" id="password" value="" />
+    <input type="button" name="name" id="login" value="登录" />
+    <script>
+        $("#login").click(function () {
+            $.ajax(
+                {
+                   
+          url: '@Url.Action("Login", "Home")',
+            type: "post",
+                //dataType: "json",
+                    data: {
+                        username: $("#username").val(),
+                        password: $("#password").val(),
+                    },
+                    success: function (data) {
+
+                        if (data) {
+                            //data = JSON.parse(data);
+                            alert(data);
+                        }
+                    }
+        });
+
+        });
+
+    </script>
 </div>
