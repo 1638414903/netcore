@@ -1,0 +1,5 @@
+1. git status  查询状态
+2.  git add -A 添加本地缓存
+3. git commit -m "描述-如更改、新增"  提交到本地缓存
+4. git push 推送到服务器
+5. git pull 更新代码到本地
