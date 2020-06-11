@@ -11,11 +11,17 @@
     <label>用户名</label> <input type="text" name="name" id="username" value="" />
     <label>密码</label> <input type="password" name="name" id="password" value="" />
     <input type="button" name="name" id="login" value="登录" />
+
+    <input type="button" name="name" id="gettoken" value="获取Token" />
+    <input type="button" name="name" id="checktoken" value="验证Token" />
+    <input type="text" name="name" id="tokenvaue" value="" />
     <script>
+
+        var token = "";
         $("#login").click(function () {
             $.ajax(
                 {
-                   
+
           url: '@Url.Action("Login", "Home")',
             type: "post",
                 //dataType: "json",
@@ -26,12 +32,49 @@
                     success: function (data) {
 
                         if (data) {
+                         
                             //data = JSON.parse(data);
                             alert(data);
                         }
                     }
         });
 
+        });
+
+        $("#gettoken").click(function () {
+            $.ajax(
+                {
+
+          url: '@Url.Action("Token", "Jwt")',
+            type: "get",
+                //dataType: "json",
+                    success: function (data) {
+
+                        if (data) {
+
+                            token = data;
+                            //data = JSON.parse(data);
+                            alert(token);
+                        }
+                    }
+        });
+
+        });
+
+
+        $("#checktoken").click(function () {
+            $.ajax({
+                url: "/api/Jwt/GET",
+                headers: { "Authorization": "Bearer " + token },
+                data: { token: token },
+                type: "get",
+                async: false,
+                success: function (e) {
+                    alert(JSON.stringify(e));
+                }, error: function (e) {
+                    alert(e.status);
+                }
+            });
         });
 
     </script>

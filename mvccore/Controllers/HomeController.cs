@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using mvccore.Models;
@@ -44,8 +45,8 @@ namespace mvccore.Controllers
         [HttpPost]
         public string Login([FromRoute]Users model)
         {
+            
             if (string.IsNullOrWhiteSpace(model.UserName) || string.IsNullOrWhiteSpace(model.PassWord))
-
             {
                 return "账号或密码不能为空";
             }
@@ -63,7 +64,6 @@ namespace mvccore.Controllers
         {
             public string UserName { get; set; }
             public string PassWord { get; set; }
-        }
-
+        }    
     }
 }
