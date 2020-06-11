@@ -43,9 +43,8 @@ namespace mvccore.Controllers
         }
 
         [HttpPost]
-        public string Login([FromRoute]Users model)
+        public string Login([FromForm]Users model)
         {
-            
             if (string.IsNullOrWhiteSpace(model.UserName) || string.IsNullOrWhiteSpace(model.PassWord))
             {
                 return "账号或密码不能为空";

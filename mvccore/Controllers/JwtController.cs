@@ -20,7 +20,7 @@ namespace mvccore.Controllers
             return "访问成功";
         }
 
-        [HttpGet("getToken")]
+        [HttpGet("Token")]
         public string Token()
         {
            return Program.ConsoleToke();

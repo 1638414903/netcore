@@ -4,13 +4,25 @@
 }
 
 <script src="~/js/jquery-1.7.1.min.js"></script>
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/bootstrap/css/bootstrap.min.css"></script>
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core"> @ss.RequestId</a>.</p>
     <p>@ViewBag.aa</p>
-    <label>用户名</label> <input type="text" name="name" id="username" value="" />
-    <label>密码</label> <input type="password" name="name" id="password" value="" />
-    <input type="button" name="name" id="login" value="登录" />
+    <div class="input-group   input-group-sm">
+        <span class="input-group-addon"></span>
+        <input type="text" class="form-control" id="username" placeholder="username" value="">
+    </div>
+    <div class="input-group   input-group-sm">
+        <span class="input-group-addon"></span>
+        <input type="password" class="form-control" id="password" placeholder="password" value="">
+    </div>
+    <div class="btn-group btn-group-lg">
+        <button type="button" id="login" class="btn btn-default">登录</button>     
+    </div>
+
 
     <input type="button" name="name" id="gettoken" value="获取Token" />
     <input type="button" name="name" id="checktoken" value="验证Token" />
@@ -32,7 +44,7 @@
                     success: function (data) {
 
                         if (data) {
-                         
+
                             //data = JSON.parse(data);
                             alert(data);
                         }
