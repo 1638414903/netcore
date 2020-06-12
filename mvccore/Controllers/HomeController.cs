@@ -43,19 +43,24 @@ namespace mvccore.Controllers
         }
 
         [HttpPost]
-        public string Login([FromForm]Users model)
+        public IActionResult Login([FromForm]Users model)
         {
             if (string.IsNullOrWhiteSpace(model.UserName) || string.IsNullOrWhiteSpace(model.PassWord))
             {
-                return "账号或密码不能为空";
+
+                return Content("<script>alert('账号或密码不能为空！');history.go(-1);</script>");
+
             }
             if (model.UserName == "1" && model.PassWord == "1")
-            {
-                return "成功";
+            {                               
+                //return RedirectToAction("Index", "boostrapIndex");
+
+                return Redirect("/home/Privacy");
+                //return "成功";
             }
             else
             {
-                return "账号或密码错误";
+                return Content("<script>alert('账号或密码错误！！！');history.go(-1);</script>");
             }
         }
 
