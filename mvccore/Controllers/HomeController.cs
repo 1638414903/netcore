@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Logging;
 using mvccore.Models;
 
@@ -31,6 +33,7 @@ namespace mvccore.Controllers
         {
             return View();
         }
+
         public IActionResult ceshi()
         {
             return View();
@@ -43,7 +46,7 @@ namespace mvccore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromForm]Users model)
+        public IActionResult Login(Users model)
         {
             if (string.IsNullOrWhiteSpace(model.UserName) || string.IsNullOrWhiteSpace(model.PassWord))
             {
@@ -52,10 +55,14 @@ namespace mvccore.Controllers
 
             }
             if (model.UserName == "1" && model.PassWord == "1")
-            {                               
-                //return RedirectToAction("Index", "boostrapIndex");
+            {
 
-                return Redirect("/home/Privacy");
+                //return new RedirectResult("privacy");
+                return Ok("/boostrapIndex/boostrapIndex");
+                //return RedirectToAction("boostrapIndex", "boostrapIndex");
+                //return RedirectToPage("home/privacy");
+                //return RedirectToAction("privacy");
+                //HttpContext.Response.Redirect("./home/privacy");
                 //return "成功";
             }
             else

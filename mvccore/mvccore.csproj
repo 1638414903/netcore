@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Folder Include="bootstrap\" />
+    <Folder Include="js\" />
   </ItemGroup>
 
 </Project>
